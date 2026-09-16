@@ -50,6 +50,16 @@ a[href^="tel:"] {
   -webkit-tap-highlight-color: transparent;
 }
 
+main section[id] {
+  scroll-margin-top: 6.5rem;
+}
+
+@media (min-width: 1024px) {
+  main section[id] {
+    scroll-margin-top: 5rem;
+  }
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;
