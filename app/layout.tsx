@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Source_Sans_3 } from "next/font/google";
 import { LocaleProvider } from "@/components/locale-provider";
 import { BUSINESS_NAME, getSiteUrl, PHONE_E164 } from "@/lib/site";
@@ -61,6 +62,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="fr" className={`${sourceSans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
+        <Script id="js-motion" strategy="beforeInteractive">
+          {`try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-motion')}}catch(e){}`}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
