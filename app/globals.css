@@ -26,6 +26,15 @@ html {
   html {
     scroll-behavior: auto;
   }
+
+  .hero-enter,
+  .will-reveal,
+  .will-reveal.is-inview {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 body {
@@ -40,4 +49,34 @@ body {
 
 a[href^="tel:"] {
   -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-enter {
+    animation: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .will-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .will-reveal.is-inview {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+      transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+  }
 }
