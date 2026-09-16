@@ -78,8 +78,8 @@ function Header() {
             src="/logo.png"
             alt="Plomberie D.Langevin"
             width={160}
-            height={124}
-            className="h-12 w-auto sm:h-14"
+            height={163}
+            className="h-14 w-auto sm:h-16"
             priority
           />
         </a>
@@ -186,7 +186,7 @@ export function LandingPage() {
                   src="/logo.png"
                   alt="Plomberie D.Langevin"
                   width={640}
-                  height={496}
+                  height={653}
                   className="mx-auto h-auto w-full"
                   priority
                 />
@@ -323,7 +323,7 @@ export function LandingPage() {
               src="/logo.png"
               alt=""
               width={120}
-              height={93}
+              height={122}
               className="h-14 w-auto"
             />
             <div>
