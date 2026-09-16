@@ -147,8 +147,8 @@ function StickyCallBar() {
 }
 
 export function LandingPage() {
-  const { t } = useLocale();
-  useScrollReveal();
+  const { locale, t } = useLocale();
+  useScrollReveal(locale);
 
   return (
     <>
@@ -217,7 +217,7 @@ export function LandingPage() {
                 const Icon = serviceIcons[index];
                 return (
                   <li
-                    key={item.title}
+                    key={index}
                     data-reveal
                     style={revealDelay(index * 55)}
                     className="rounded-xl border border-neutral-200 bg-neutral-50/60 p-5 transition duration-200 hover:border-brand/20 hover:bg-white hover:shadow-sm"
@@ -268,7 +268,7 @@ export function LandingPage() {
             <ul className="mt-10 grid gap-6 sm:grid-cols-2">
               {t.trust.items.map((item, i) => (
                 <li
-                  key={item.title}
+                  key={i}
                   data-reveal
                   style={revealDelay(i * 50)}
                   className="flex gap-4"
