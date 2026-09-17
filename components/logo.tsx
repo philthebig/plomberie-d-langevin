@@ -1,8 +1,8 @@
 const LOGO_PNG = "/logo.png";
 const LOGO_SVG = "/logo.svg";
 /** Intrinsic size of public/logo.png (trimmed official lockup). */
-export const LOGO_WIDTH = 638;
-export const LOGO_HEIGHT = 619;
+export const LOGO_WIDTH = 454;
+export const LOGO_HEIGHT = 440;
 
 type LogoProps = {
   className?: string;
