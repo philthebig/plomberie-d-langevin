@@ -21,7 +21,7 @@ const NAV = [
 ] as const;
 
 const primaryBtn =
-  "inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 text-white transition duration-200 hover:-translate-y-px hover:bg-amber-600 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600";
+  "inline-flex items-center justify-center gap-2 rounded-xl bg-brand text-white transition duration-200 hover:-translate-y-px hover:bg-brand-hover hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
 
 const secondaryBtn =
   "inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white text-brand shadow-sm transition duration-200 hover:-translate-y-px hover:border-brand hover:bg-brand-soft hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
@@ -210,7 +210,7 @@ export function LandingPage() {
               <h2 className="text-3xl font-bold tracking-tight text-brand">
                 {t.services.title}
               </h2>
-              <span className="rounded-full border border-amber-300 bg-amber-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-amber-900">
+              <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-900">
                 {t.services.badge}
               </span>
             </div>
