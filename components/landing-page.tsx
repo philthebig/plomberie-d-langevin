@@ -21,10 +21,10 @@ const NAV = [
 ] as const;
 
 const primaryBtn =
-  "inline-flex items-center justify-center gap-2 rounded-md bg-brand text-white shadow-sm transition duration-200 hover:-translate-y-px hover:bg-brand-hover hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
+  "inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 text-white shadow-sm transition duration-200 hover:-translate-y-px hover:bg-amber-600 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600";
 
 const secondaryBtn =
-  "inline-flex items-center justify-center rounded-md border border-neutral-300 bg-white text-neutral-800 shadow-sm transition duration-200 hover:-translate-y-px hover:border-brand hover:text-brand hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
+  "inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white text-brand shadow-sm transition duration-200 hover:-translate-y-px hover:border-brand hover:bg-brand-soft hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
 
 function revealDelay(ms: number): CSSProperties {
   return { "--reveal-delay": `${ms}ms` } as CSSProperties;
@@ -38,7 +38,7 @@ function CallLink({
   children: ReactNode;
 }) {
   return (
-    <a href={PHONE_TEL} className={className}>
+    <a href={PHONE_TEL} className={`touch-manipulation ${className}`}>
       {children}
     </a>
   );
@@ -56,7 +56,7 @@ function LanguageToggle() {
       className={`rounded px-1.5 py-0.5 text-sm font-semibold tracking-wide transition-colors duration-200 ${
         locale === code
           ? "bg-brand text-white"
-          : "text-neutral-600 hover:text-brand"
+          : "text-brand/70 hover:text-brand"
       }`}
     >
       {label}
@@ -83,10 +83,13 @@ function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-neutral-200/80 bg-white/95 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5 sm:px-6">
-        <a href="#accueil" className="shrink-0 rounded-sm focus-visible:outline-brand">
+      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2 sm:px-6">
+        <a
+          href="#accueil"
+          className="min-w-0 shrink rounded-sm focus-visible:outline-brand"
+        >
           <Logo
-            className="h-14 w-auto sm:h-16"
+            className="h-[5.5rem] w-auto object-contain object-left sm:h-[6.25rem]"
             priority
           />
         </a>
@@ -99,7 +102,7 @@ function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="rounded-md px-2.5 py-2 text-sm font-medium text-neutral-700 transition-colors duration-200 hover:bg-neutral-100 hover:text-brand"
+              className="rounded-md px-2.5 py-2 text-sm font-semibold text-brand transition-colors duration-200 hover:bg-brand-soft hover:text-brand-hover"
             >
               {t.nav[item.key]}
             </a>
@@ -123,7 +126,7 @@ function Header() {
           <a
             key={item.href}
             href={item.href}
-            className="shrink-0 rounded-full px-3 py-1 text-xs font-medium text-neutral-600 transition-colors duration-200 hover:bg-brand-soft hover:text-brand"
+            className="shrink-0 rounded-full px-3 py-1 text-xs font-semibold text-brand transition-colors duration-200 hover:bg-brand-soft hover:text-brand-hover"
           >
             {t.nav[item.key]}
           </a>
@@ -137,11 +140,16 @@ function StickyCallBar() {
   const { t } = useLocale();
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-neutral-200 bg-white/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(0,0,0,0.06)] md:hidden">
-      <CallLink className={`${primaryBtn} w-full px-4 py-3.5 text-base font-semibold`}>
-        <IconPhone className="size-5" />
-        {t.callWithNumber}
-      </CallLink>
+    <div className="fixed inset-x-0 bottom-0 z-40 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2 md:hidden">
+      <div className="relative">
+        <span className="cta-pulse-ring" aria-hidden="true" />
+        <CallLink
+          className={`${primaryBtn} relative w-full px-4 py-3.5 text-base font-semibold shadow-lg shadow-amber-500/25`}
+        >
+          <IconPhone className="size-5" />
+          {t.callWithNumber}
+        </CallLink>
+      </div>
     </div>
   );
 }
@@ -160,17 +168,14 @@ export function LandingPage() {
       </a>
       <Header />
       <main id="contenu" className="flex-1 pb-24 md:pb-0">
-        <section
-          id="accueil"
-          className="border-b border-neutral-200 bg-[linear-gradient(180deg,#f4f6fa_0%,#ffffff_100%)]"
-        >
+        <section id="accueil" className="hero-surface border-b border-neutral-200">
           <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:py-20">
-            <div>
+            <div className="relative">
               <p className="hero-enter text-sm font-semibold uppercase tracking-[0.14em] text-brand">
                 {t.hero.kicker}
               </p>
               <h1
-                className="hero-enter mt-3 max-w-xl text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl"
+                className="hero-enter mt-3 max-w-xl bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text pb-1 text-4xl font-bold leading-[1.15] tracking-tight text-transparent sm:text-5xl"
                 style={{ animationDelay: "70ms" }}
               >
                 {t.hero.title}
@@ -192,8 +197,8 @@ export function LandingPage() {
               </div>
             </div>
             <div className="hero-enter flex justify-center lg:justify-end" style={{ animationDelay: "90ms" }}>
-              <div className="w-full max-w-sm rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8">
-                <Logo className="mx-auto h-auto w-full" priority />
+              <div className="w-full max-w-sm rounded-2xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
+                <Logo className="mx-auto h-auto w-full object-contain" priority />
               </div>
             </div>
           </div>
@@ -202,7 +207,7 @@ export function LandingPage() {
         <section id="services" className="bg-white">
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
             <div data-reveal className="flex flex-wrap items-center gap-3">
-              <h2 className="text-3xl font-bold tracking-tight text-neutral-900">
+              <h2 className="text-3xl font-bold tracking-tight text-brand">
                 {t.services.title}
               </h2>
               <span className="rounded-full border border-amber-300 bg-amber-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-amber-900">
@@ -212,20 +217,20 @@ export function LandingPage() {
             <p data-reveal className="mt-4 max-w-3xl text-base leading-relaxed text-neutral-600">
               {t.services.note}
             </p>
-            <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="mt-10 grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {t.services.items.map((item, index) => {
                 const Icon = serviceIcons[index];
                 return (
                   <li
                     key={index}
                     data-reveal
-                    style={revealDelay(index * 55)}
-                    className="rounded-xl border border-neutral-200 bg-neutral-50/60 p-5 transition duration-200 hover:border-brand/20 hover:bg-white hover:shadow-sm"
+                    style={revealDelay(index * 70)}
+                    className="h-full rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md"
                   >
-                    <div className="flex size-10 items-center justify-center rounded-lg bg-brand-soft text-brand">
-                      <Icon className="size-5" />
+                    <div className="inline-flex rounded-full bg-blue-50 p-3 text-blue-900">
+                      <Icon className="size-7" />
                     </div>
-                    <h3 className="mt-4 text-lg font-semibold text-neutral-900">
+                    <h3 className="mt-5 text-lg font-semibold text-brand">
                       {item.title}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-neutral-600">
@@ -243,11 +248,11 @@ export function LandingPage() {
             data-reveal
             className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[auto_1fr] lg:items-start"
           >
-            <div className="flex size-14 items-center justify-center rounded-xl bg-brand-soft text-brand">
+            <div className="flex size-14 items-center justify-center rounded-full bg-blue-50 p-3 text-blue-900">
               <IconPin className="size-7" />
             </div>
             <div>
-              <h2 className="text-3xl font-bold tracking-tight text-neutral-900">
+              <h2 className="text-3xl font-bold tracking-tight text-brand">
                 {t.area.title}
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-neutral-800">
@@ -262,7 +267,7 @@ export function LandingPage() {
 
         <section id="confiance" className="bg-white">
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-            <h2 data-reveal className="text-3xl font-bold tracking-tight text-neutral-900">
+            <h2 data-reveal className="text-3xl font-bold tracking-tight text-brand">
               {t.trust.title}
             </h2>
             <ul className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -270,14 +275,14 @@ export function LandingPage() {
                 <li
                   key={i}
                   data-reveal
-                  style={revealDelay(i * 50)}
+                  style={revealDelay(i * 110)}
                   className="flex gap-4"
                 >
-                  <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">
-                    {i + 1}
+                  <span className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-bold tabular-nums text-blue-900 ring-1 ring-blue-100">
+                    {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="text-lg font-semibold text-neutral-900">
+                    <h3 className="text-lg font-semibold text-brand">
                       {item.title}
                     </h3>
                     <p className="mt-1.5 text-base leading-relaxed text-neutral-600">
@@ -294,12 +299,12 @@ export function LandingPage() {
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
             <div
               data-reveal
-              className="max-w-3xl rounded-2xl border border-brand/15 bg-white p-6 shadow-sm sm:p-10"
+              className="max-w-3xl rounded-2xl border border-gray-100 bg-white p-6 shadow-sm sm:p-10"
             >
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
                 {t.nav.urgent}
               </p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900">
+              <h2 className="mt-2 text-3xl font-bold tracking-tight text-brand">
                 {t.urgent.title}
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-neutral-700">
@@ -320,9 +325,9 @@ export function LandingPage() {
           <div data-reveal className="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6 sm:py-20">
             <Logo
               decorative
-              className="mx-auto mb-8 h-20 w-auto sm:h-24"
+              className="mx-auto mb-8 h-24 w-auto object-contain sm:h-28"
             />
-            <h2 className="text-3xl font-bold tracking-tight text-neutral-900">
+            <h2 className="text-3xl font-bold tracking-tight text-brand">
               {t.contact.title}
             </h2>
             <p className="mt-4 text-xl text-neutral-800">{t.contact.lead}</p>
@@ -343,9 +348,9 @@ export function LandingPage() {
           className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-6"
         >
           <div className="flex items-center gap-4">
-            <Logo decorative className="h-14 w-auto" />
+            <Logo decorative className="h-16 w-auto object-contain" />
             <div>
-              <p className="font-semibold text-neutral-900">{t.footer.rights}</p>
+              <p className="font-semibold text-brand">{t.footer.rights}</p>
               <a
                 href={PHONE_TEL}
                 className="text-sm font-medium text-brand transition-colors duration-200 hover:underline"

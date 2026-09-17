@@ -40,4 +40,4 @@ Facts used on the site are limited to what was provided:
 - Urgent-need copy invites people to call without promising round-the-clock service
 - The services list is marked **à confirmer / to be confirmed** with the owner
 
-The logo lockup lives in `public/logo.png` (header, footer, hero) and is also used for the favicon (`app/icon.png`) and social image (`public/og.png`). It stays grayscale; deep blue (`#0B3D91`) is used only for CTAs, links, and accents.
+The official grayscale lockup lives in `public/logo.png` (header, footer, hero) and is also used for the favicon (`app/icon.png`) and social image (`public/og.png`). Navy (`#0B3D91`) is used for typography, navigation, and headers. Warm amber (`bg-amber-500` / `hover:bg-amber-600`) is reserved for primary click-to-call buttons.

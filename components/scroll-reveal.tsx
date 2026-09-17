@@ -31,7 +31,7 @@ export function useScrollReveal(locale: string) {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.18, rootMargin: "0px 0px -12% 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
     );
 
     const frame = requestAnimationFrame(() => {
