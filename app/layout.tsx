@@ -60,7 +60,11 @@ const jsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${sourceSans.variable} h-full antialiased`}>
+    <html
+      lang="fr"
+      className={`${sourceSans.variable} h-full antialiased`}
+      suppressHydrationWarning
+    >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <Script id="js-motion" strategy="beforeInteractive">
           {`try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-motion')}}catch(e){}`}

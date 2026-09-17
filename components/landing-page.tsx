@@ -21,7 +21,7 @@ const NAV = [
 ] as const;
 
 const primaryBtn =
-  "inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 text-white shadow-sm transition duration-200 hover:-translate-y-px hover:bg-amber-600 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600";
+  "inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 text-white transition duration-200 hover:-translate-y-px hover:bg-amber-600 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600";
 
 const secondaryBtn =
   "inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white text-brand shadow-sm transition duration-200 hover:-translate-y-px hover:border-brand hover:bg-brand-soft hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
@@ -111,7 +111,7 @@ function Header() {
 
         <div className="ml-auto flex items-center gap-2 sm:gap-3">
           <LanguageToggle />
-          <CallLink className={`${primaryBtn} px-3 py-2 text-sm font-semibold sm:px-4`}>
+          <CallLink className={`${primaryBtn} px-3 py-2 text-sm font-semibold shadow-sm sm:px-4`}>
             <IconPhone className="size-4" />
             <span className="hidden sm:inline">{PHONE_DISPLAY}</span>
             <span className="sm:hidden">{t.headerCta}</span>
@@ -140,11 +140,11 @@ function StickyCallBar() {
   const { t } = useLocale();
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2 md:hidden">
-      <div className="relative">
+    <div className="fixed inset-x-0 bottom-0 z-50 overflow-visible px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2 md:hidden">
+      <div className="relative overflow-visible">
         <span className="cta-pulse-ring" aria-hidden="true" />
         <CallLink
-          className={`${primaryBtn} relative w-full px-4 py-3.5 text-base font-semibold shadow-lg shadow-amber-500/25`}
+          className={`${primaryBtn} cta-pulse relative w-full px-4 py-3.5 text-base font-semibold`}
         >
           <IconPhone className="size-5" />
           {t.callWithNumber}
@@ -187,7 +187,7 @@ export function LandingPage() {
                 {t.hero.lead}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <CallLink className={`${primaryBtn} px-5 py-3.5 text-base font-semibold`}>
+                <CallLink className={`${primaryBtn} px-5 py-3.5 text-base font-semibold shadow-sm`}>
                   <IconPhone className="size-5" />
                   {t.callWithNumber}
                 </CallLink>
@@ -228,7 +228,7 @@ export function LandingPage() {
                     className="h-full rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md"
                   >
                     <div className="inline-flex rounded-full bg-blue-50 p-3 text-blue-900">
-                      <Icon className="size-7" />
+                      <Icon className="size-8" />
                     </div>
                     <h3 className="mt-5 text-lg font-semibold text-brand">
                       {item.title}
@@ -313,7 +313,7 @@ export function LandingPage() {
               <p className="mt-3 text-base leading-relaxed text-neutral-600">
                 {t.urgent.note}
               </p>
-              <CallLink className={`${primaryBtn} mt-8 px-5 py-3.5 text-base font-semibold`}>
+              <CallLink className={`${primaryBtn} mt-8 px-5 py-3.5 text-base font-semibold shadow-sm`}>
                 <IconPhone className="size-5" />
                 {t.callWithNumber}
               </CallLink>
@@ -334,7 +334,7 @@ export function LandingPage() {
             <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-neutral-600">
               {t.contact.body}
             </p>
-            <CallLink className={`${primaryBtn} mt-8 gap-3 px-6 py-4 text-xl font-bold sm:text-2xl`}>
+            <CallLink className={`${primaryBtn} mt-8 gap-3 px-6 py-4 text-xl font-bold shadow-sm sm:text-2xl`}>
               <IconPhone className="size-6" />
               {PHONE_DISPLAY}
             </CallLink>
