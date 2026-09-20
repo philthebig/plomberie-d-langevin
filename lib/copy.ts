@@ -1,3 +1,5 @@
+import { EMAIL_PLACEHOLDER } from "@/lib/site";
+
 export type Locale = "fr" | "en";
 
 export const copy = {
@@ -18,7 +20,8 @@ export const copy = {
     },
     call: "Appeler",
     callWithNumber: "Appeler 819-449-0778",
-    headerCta: "Appeler",
+    headerCta: "Écrire",
+    headerCtaAria: `Écrire à ${EMAIL_PLACEHOLDER}`,
     stickyNote: "Un appel suffit",
     hero: {
       kicker: "Région de Maniwaki / Outaouais",
@@ -115,7 +118,8 @@ export const copy = {
     },
     call: "Call",
     callWithNumber: "Call 819-449-0778",
-    headerCta: "Call",
+    headerCta: "Email",
+    headerCtaAria: `Email ${EMAIL_PLACEHOLDER}`,
     stickyNote: "One call is enough",
     hero: {
       kicker: "Maniwaki / Outaouais area",
