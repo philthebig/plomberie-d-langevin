@@ -365,7 +365,7 @@ export function LandingPage() {
         >
           <div className="flex items-center gap-4">
             <div className="rounded-lg border border-stone-200/80 bg-white px-2 py-1.5 shadow-sm">
-              <Logo decorative className="h-12 w-auto object-contain" />
+              <Logo decorative className="h-14 w-auto object-contain" />
             </div>
             <div>
               <p className="font-semibold text-brand">{t.footer.rights}</p>
