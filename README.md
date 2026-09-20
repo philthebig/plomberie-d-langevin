@@ -2,7 +2,9 @@
 
 Bilingual (FR default / EN toggle) marketing landing site for **Plomberie D.Langevin**, a local plumbing business in the Maniwaki / Outaouais area (819).
 
-Phone (click-to-call everywhere): [819-449-0778](tel:+18194490778)
+Phone (click-to-call on hero, urgent, contact, and the sticky mobile **Appeler** bar): [819-449-0778](tel:+18194490778)
+
+Header CTA is a placeholder email (`mailto:info@plomberie-dlangevin.ca`) until the owner confirms the real inbox.
 
 ## Stack
 
@@ -40,4 +42,4 @@ Facts used on the site are limited to what was provided:
 - Urgent-need copy invites people to call without promising round-the-clock service
 - The services list is marked **à confirmer / to be confirmed** with the owner
 
-The official grayscale lockup lives in `public/logo.png` (header, footer, hero) and is also used for the favicon (`app/icon.png`) and social image (`public/og.png`). Navy (`#0B3D91`, Tailwind `bg-brand` / `hover:bg-brand-hover`) is used for typography, navigation, headers, and primary click-to-call buttons.
+The official grayscale lockup lives in `public/logo.png` (header and a small footer mark) and is also used for the favicon (`app/icon.png`) and social image (`public/og.png`). Navy (`#0B3D91`, Tailwind `bg-brand` / `hover:bg-brand-hover`) is used for typography, navigation, headers, the email header button, and primary click-to-call buttons.

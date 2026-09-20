@@ -1,11 +1,12 @@
 "use client";
 
 import type { CSSProperties, ReactNode } from "react";
-import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+import { EMAIL_MAILTO, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 import { useLocale } from "@/components/locale-provider";
 import { Logo } from "@/components/logo";
 import { useScrollReveal } from "@/components/scroll-reveal";
 import {
+  IconMail,
   IconPhone,
   IconPin,
   serviceIcons,
@@ -24,7 +25,10 @@ const primaryBtn =
   "inline-flex items-center justify-center gap-2 rounded-xl bg-brand text-white transition duration-200 hover:-translate-y-px hover:bg-brand-hover hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
 
 const secondaryBtn =
-  "inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white text-brand shadow-sm transition duration-200 hover:-translate-y-px hover:border-brand hover:bg-brand-soft hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
+  "inline-flex items-center justify-center rounded-xl border border-stone-300 bg-white text-brand shadow-sm transition duration-200 hover:-translate-y-px hover:border-brand hover:bg-brand-soft hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
+
+const card =
+  "rounded-2xl border border-stone-300/80 bg-white shadow-[0_1px_2px_rgb(28_25_23/0.06),0_10px_24px_rgb(28_25_23/0.05)]";
 
 function revealDelay(ms: number): CSSProperties {
   return { "--reveal-delay": `${ms}ms` } as CSSProperties;
@@ -39,6 +43,26 @@ function CallLink({
 }) {
   return (
     <a href={PHONE_TEL} className={`touch-manipulation ${className}`}>
+      {children}
+    </a>
+  );
+}
+
+function EmailLink({
+  className,
+  children,
+  ariaLabel,
+}: {
+  className: string;
+  children: ReactNode;
+  ariaLabel: string;
+}) {
+  return (
+    <a
+      href={EMAIL_MAILTO}
+      className={`touch-manipulation ${className}`}
+      aria-label={ariaLabel}
+    >
       {children}
     </a>
   );
@@ -67,10 +91,10 @@ function LanguageToggle() {
     <div
       role="group"
       aria-label={t.nav.langGroup}
-      className="flex items-center gap-0.5 rounded-md border border-neutral-200 bg-white p-0.5"
+      className="flex items-center gap-0.5 rounded-md border border-stone-300/80 bg-white p-0.5"
     >
       {btn("fr", "FR")}
-      <span className="text-neutral-300" aria-hidden="true">
+      <span className="text-stone-300" aria-hidden="true">
         |
       </span>
       {btn("en", "EN")}
@@ -82,7 +106,7 @@ function Header() {
   const { t } = useLocale();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-neutral-200/80 bg-white/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-b border-stone-200/80 bg-surface/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2 sm:px-6">
         <a
           href="#accueil"
@@ -111,15 +135,17 @@ function Header() {
 
         <div className="ml-auto flex items-center gap-2 sm:gap-3">
           <LanguageToggle />
-          <CallLink className={`${primaryBtn} px-3 py-2 text-sm font-semibold shadow-sm sm:px-4`}>
-            <IconPhone className="size-4" />
-            <span className="hidden sm:inline">{PHONE_DISPLAY}</span>
-            <span className="sm:hidden">{t.headerCta}</span>
-          </CallLink>
+          <EmailLink
+            className={`${primaryBtn} px-3 py-2 text-sm font-semibold shadow-sm sm:px-4`}
+            ariaLabel={t.headerCtaAria}
+          >
+            <IconMail className="size-4" />
+            <span>{t.headerCta}</span>
+          </EmailLink>
         </div>
       </div>
       <nav
-        className="flex gap-1 overflow-x-auto border-t border-neutral-100 px-3 py-1.5 lg:hidden"
+        className="flex gap-1 overflow-x-auto border-t border-stone-200/70 px-3 py-1.5 lg:hidden"
         aria-label="Sections"
       >
         {NAV.map((item) => (
@@ -162,15 +188,15 @@ export function LandingPage() {
     <>
       <a
         href="#accueil"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-brand focus:shadow"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-surface focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-brand focus:shadow"
       >
         {t.skip}
       </a>
       <Header />
       <main id="contenu" className="flex-1 pb-24 md:pb-0">
-        <section id="accueil" className="hero-surface border-b border-neutral-200">
-          <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:py-20">
-            <div className="relative">
+        <section id="accueil" className="hero-surface border-b border-stone-200/80">
+          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
+            <div className="relative max-w-2xl">
               <p className="hero-enter text-sm font-semibold uppercase tracking-[0.14em] text-brand">
                 {t.hero.kicker}
               </p>
@@ -196,21 +222,16 @@ export function LandingPage() {
                 </a>
               </div>
             </div>
-            <div className="hero-enter flex justify-center lg:justify-end" style={{ animationDelay: "90ms" }}>
-              <div className="w-full max-w-sm rounded-2xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
-                <Logo className="mx-auto h-auto w-full object-contain" priority />
-              </div>
-            </div>
           </div>
         </section>
 
-        <section id="services" className="bg-white">
+        <section id="services" className="bg-brand-soft">
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
             <div data-reveal className="flex flex-wrap items-center gap-3">
               <h2 className="text-3xl font-bold tracking-tight text-brand">
                 {t.services.title}
               </h2>
-              <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-900">
+              <span className="rounded-full border border-blue-200 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-900">
                 {t.services.badge}
               </span>
             </div>
@@ -225,7 +246,7 @@ export function LandingPage() {
                     key={index}
                     data-reveal
                     style={revealDelay(index * 70)}
-                    className="h-full rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md"
+                    className={`${card} h-full p-6 transition-all duration-300 hover:shadow-[0_2px_4px_rgb(28_25_23/0.07),0_14px_28px_rgb(28_25_23/0.08)]`}
                   >
                     <div className="inline-flex rounded-full bg-blue-50 p-3 text-blue-900">
                       <Icon className="size-8" />
@@ -243,12 +264,12 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="zone" className="border-y border-neutral-200 bg-neutral-50">
+        <section id="zone" className="border-y border-stone-200/80 bg-surface-sand">
           <div
             data-reveal
             className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[auto_1fr] lg:items-start"
           >
-            <div className="flex size-14 items-center justify-center rounded-full bg-blue-50 p-3 text-blue-900">
+            <div className="flex size-14 items-center justify-center rounded-full bg-white p-3 text-blue-900 shadow-sm ring-1 ring-stone-200/80">
               <IconPin className="size-7" />
             </div>
             <div>
@@ -265,18 +286,18 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="confiance" className="bg-white">
+        <section id="confiance" className="bg-background">
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
             <h2 data-reveal className="text-3xl font-bold tracking-tight text-brand">
               {t.trust.title}
             </h2>
-            <ul className="mt-10 grid gap-6 sm:grid-cols-2">
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2">
               {t.trust.items.map((item, i) => (
                 <li
                   key={i}
                   data-reveal
                   style={revealDelay(i * 110)}
-                  className="flex gap-4"
+                  className={`${card} flex gap-4 p-5`}
                 >
                   <span className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-bold tabular-nums text-blue-900 ring-1 ring-blue-100">
                     {String(i + 1).padStart(2, "0")}
@@ -297,10 +318,7 @@ export function LandingPage() {
 
         <section id="urgence" className="bg-brand-soft">
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-            <div
-              data-reveal
-              className="max-w-3xl rounded-2xl border border-gray-100 bg-white p-6 shadow-sm sm:p-10"
-            >
+            <div data-reveal className={`${card} max-w-3xl p-6 sm:p-10`}>
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
                 {t.nav.urgent}
               </p>
@@ -321,34 +339,34 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="contact" className="border-t border-neutral-200 bg-white">
-          <div data-reveal className="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6 sm:py-20">
-            <Logo
-              decorative
-              className="mx-auto mb-8 h-24 w-auto object-contain sm:h-28"
-            />
-            <h2 className="text-3xl font-bold tracking-tight text-brand">
-              {t.contact.title}
-            </h2>
-            <p className="mt-4 text-xl text-neutral-800">{t.contact.lead}</p>
-            <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-neutral-600">
-              {t.contact.body}
-            </p>
-            <CallLink className={`${primaryBtn} mt-8 gap-3 px-6 py-4 text-xl font-bold shadow-sm sm:text-2xl`}>
-              <IconPhone className="size-6" />
-              {PHONE_DISPLAY}
-            </CallLink>
+        <section id="contact" className="border-t border-stone-200/80 bg-surface-sand">
+          <div data-reveal className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+            <div className={`${card} mx-auto max-w-2xl px-6 py-10 text-center sm:px-10`}>
+              <h2 className="text-3xl font-bold tracking-tight text-brand">
+                {t.contact.title}
+              </h2>
+              <p className="mt-4 text-xl text-neutral-800">{t.contact.lead}</p>
+              <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-neutral-600">
+                {t.contact.body}
+              </p>
+              <CallLink className={`${primaryBtn} mt-8 gap-3 px-6 py-4 text-xl font-bold shadow-sm sm:text-2xl`}>
+                <IconPhone className="size-6" />
+                {PHONE_DISPLAY}
+              </CallLink>
+            </div>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-neutral-200 bg-neutral-50">
+      <footer className="border-t border-stone-300/70 bg-[#e4dccb]">
         <div
           data-reveal
           className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-6"
         >
           <div className="flex items-center gap-4">
-            <Logo decorative className="h-16 w-auto object-contain" />
+            <div className="rounded-lg border border-stone-200/80 bg-white px-2 py-1.5 shadow-sm">
+              <Logo decorative className="h-14 w-auto object-contain" />
+            </div>
             <div>
               <p className="font-semibold text-brand">{t.footer.rights}</p>
               <a

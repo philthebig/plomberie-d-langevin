@@ -3,6 +3,10 @@ export const PHONE_DISPLAY = "819-449-0778";
 export const PHONE_TEL = "tel:+18194490778";
 export const PHONE_E164 = "+18194490778";
 
+/** Placeholder inbox until the owner confirms the real address. */
+export const EMAIL_PLACEHOLDER = "info@plomberie-dlangevin.ca";
+export const EMAIL_MAILTO = `mailto:${EMAIL_PLACEHOLDER}`;
+
 export function getSiteUrl(): string {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL;
   if (explicit) return explicit.replace(/\/$/, "");

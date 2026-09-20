@@ -19,6 +19,15 @@ export function IconPhone(props: IconProps) {
   );
 }
 
+export function IconMail(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...base} {...props}>
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+      <path d="m4.2 7.2 7.8 6.1 7.8-6.1" />
+    </svg>
+  );
+}
+
 export function IconDrain(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" {...base} {...props}>
