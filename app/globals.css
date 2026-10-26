@@ -5,9 +5,12 @@
   --foreground: #1c1c1c;
   --brand: #0b3d91;
   --brand-hover: #082e6e;
-  --brand-soft: #e4ecf7;
+  /* Muted blue-grey: #e4ecf7 mixed toward cream and stone so it sits with the warm ground. */
+  --brand-soft: #e4e9ee;
   --surface: #fffdf8;
   --surface-sand: #ebe4d4;
+  --surface-footer: #e4dccb;
+  --section-blend: 6.5rem;
 }
 
 @theme inline {
@@ -81,6 +84,47 @@ main section[id] {
     linear-gradient(to right, rgb(15 23 42 / 0.055) 1px, transparent 1px),
     linear-gradient(to bottom, rgb(15 23 42 / 0.055) 1px, transparent 1px);
   background-size: auto, auto, 32px 32px, 32px 32px;
+}
+
+/* Each band starts on the previous section's color and eases into its own
+   over ~104px, so cream and blue-grey meet without a hard edge. */
+.section-blend {
+  --section-from: var(--background);
+  --section-to: var(--brand-soft);
+  background-color: var(--section-to);
+  background-image: linear-gradient(
+    to bottom,
+    var(--section-from) 0,
+    var(--section-to) var(--section-blend)
+  );
+}
+
+.blend-from-cream {
+  --section-from: var(--background);
+}
+
+.blend-from-sand {
+  --section-from: var(--surface-sand);
+}
+
+.blend-from-soft {
+  --section-from: var(--brand-soft);
+}
+
+.blend-to-soft {
+  --section-to: var(--brand-soft);
+}
+
+.blend-to-sand {
+  --section-to: var(--surface-sand);
+}
+
+.blend-to-cream {
+  --section-to: var(--background);
+}
+
+.blend-to-footer {
+  --section-to: var(--surface-footer);
 }
 
 .cta-pulse {
