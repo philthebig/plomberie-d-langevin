@@ -194,7 +194,7 @@ export function LandingPage() {
       </a>
       <Header />
       <main id="contenu" className="flex-1 pb-24 md:pb-0">
-        <section id="accueil" className="hero-surface border-b border-stone-200/80">
+        <section id="accueil" className="hero-surface">
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
             <div className="relative max-w-2xl">
               <p className="hero-enter text-sm font-semibold uppercase tracking-[0.14em] text-brand">
@@ -212,12 +212,15 @@ export function LandingPage() {
               >
                 {t.hero.lead}
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <CallLink className={`${primaryBtn} px-5 py-3.5 text-base font-semibold shadow-sm`}>
-                  <IconPhone className="size-5" />
-                  {t.callWithNumber}
-                </CallLink>
-                <a href="#services" className={`${secondaryBtn} px-5 py-3.5 text-base font-semibold`}>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                <EmailLink
+                  className={`${primaryBtn} w-full px-5 py-3.5 text-center text-base font-semibold leading-snug shadow-sm sm:w-auto`}
+                  ariaLabel={t.hero.primary}
+                >
+                  <IconMail className="size-5 shrink-0" />
+                  <span className="min-w-0 text-balance">{t.hero.primary}</span>
+                </EmailLink>
+                <a href="#services" className={`${secondaryBtn} w-full px-5 py-3.5 text-center text-base font-semibold sm:w-auto`}>
                   {t.hero.secondary}
                 </a>
               </div>
@@ -225,7 +228,7 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="services" className="bg-brand-soft">
+        <section id="services" className="section-blend blend-from-cream blend-to-soft">
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
             <div data-reveal className="flex flex-wrap items-center gap-3">
               <h2 className="text-3xl font-bold tracking-tight text-brand">
@@ -264,7 +267,7 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="zone" className="border-y border-stone-200/80 bg-surface-sand">
+        <section id="zone" className="section-blend blend-from-soft blend-to-sand">
           <div
             data-reveal
             className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[auto_1fr] lg:items-start"
@@ -286,7 +289,7 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="confiance" className="bg-background">
+        <section id="confiance" className="section-blend blend-from-sand blend-to-cream">
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
             <h2 data-reveal className="text-3xl font-bold tracking-tight text-brand">
               {t.trust.title}
@@ -316,7 +319,7 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="urgence" className="bg-brand-soft">
+        <section id="urgence" className="section-blend blend-from-cream blend-to-soft">
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
             <div data-reveal className={`${card} max-w-3xl p-6 sm:p-10`}>
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand">
@@ -339,7 +342,7 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="contact" className="border-t border-stone-200/80 bg-surface-sand">
+        <section id="contact" className="section-blend blend-from-soft blend-to-sand">
           <div data-reveal className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
             <div className={`${card} mx-auto max-w-2xl px-6 py-10 text-center sm:px-10`}>
               <h2 className="text-3xl font-bold tracking-tight text-brand">
@@ -358,7 +361,7 @@ export function LandingPage() {
         </section>
       </main>
 
-      <footer className="border-t border-stone-300/70 bg-[#e4dccb]">
+      <footer className="section-blend blend-from-sand blend-to-footer">
         <div
           data-reveal
           className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-6"

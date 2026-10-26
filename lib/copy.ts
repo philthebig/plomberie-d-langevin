@@ -26,7 +26,8 @@ export const copy = {
     hero: {
       kicker: "Région de Maniwaki / Outaouais",
       title: "Plomberie locale. Un appel suffit.",
-      lead: "Plomberie D.Langevin — pour une réparation, une installation ou un besoin urgent. Appelez le 819-449-0778 : c’est le moyen le plus simple de nous joindre.",
+      lead: "Plomberie D.Langevin — pour une réparation, une installation ou un besoin urgent. Écrivez-nous ou appelez le 819-449-0778.",
+      primary: `Écrire à ${EMAIL_PLACEHOLDER}`,
       secondary: "Voir les services",
     },
     services: {
@@ -124,7 +125,8 @@ export const copy = {
     hero: {
       kicker: "Maniwaki / Outaouais area",
       title: "Local plumbing. One call is enough.",
-      lead: "Plomberie D.Langevin — for a repair, an install, or an urgent need. Call 819-449-0778: it is the simplest way to reach us.",
+      lead: "Plomberie D.Langevin — for a repair, an install, or an urgent need. Email us or call 819-449-0778.",
+      primary: `Email ${EMAIL_PLACEHOLDER}`,
       secondary: "See services",
     },
     services: {
